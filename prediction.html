@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type = "text/css" href="{{url_for('static',filename = 'css/prediction.css')}}">
+  
+    <title>Credit Card Fraud Detector</title>
+</head>
+<body>
+    <div class="prediction">
+ 
+    <h1 class="title">Fraud detection</h1>
+    <p class="para">Enter transcation details to check</p>
+
+    <form action="/predict_fraud" method="post" class="prediction_form">
+        <label for="type" class="predict_label">Type</label>
+        <input type="number" id="type" name="type" class="predict_input" required > <br> <br>
+
+        <label for="amount" class="predict_label">Amount</label>
+        <input type="number" id="amount" class="predict_input" name="amount" required> <br> <br>
+
+        <label for="oldbalanceOrg" class="predict_label">old_balance</label>
+        <input type="number" id="oldbalanceOrg" class="predict_input" name="oldbalanceOrg" required> <br> <br>
+
+        <label for="newbalanceOrig" class="predict_label">new_balance</label>
+        <input type="number" id="newbalanceOrig" class="predict_input" name="newbalanceOrig" required> <br> <br>
+
+        <input type="submit" value="Predict Transcation" class="prediction_button">
+    </form>
+
+    {%if is_fraud == 1 %}
+    <strong class="fraud">This Transcation is fraud</strong>
+    {% elif is_fraud == 0 %}
+    <strong  class="normal"> This Transcation is Normal</strong>
+    {%else%} 
+    <br>
+    {%endif%}
+
+    </div>
+</body>
+</html>
